@@ -1,13 +1,16 @@
-import { Banner, CategoriesSection, HomeCollectionSection } from "../components";
+import React from 'react'
+import ProductGrid from '../components/ProductGrid'
+import CategoriesSection from '../components/CategoriesSection'
 
-const Landing = () => {
+const Landing: React.FC = () => {
   return (
-    <>
-      <Banner />
-      <HomeCollectionSection />
+    <div className="min-h-screen bg-gray-50">
+      {/* Hero section or any other content you might have */}
+      <ProductGrid />
       <CategoriesSection />
-      
-    </>
-  );
-};
-export default Landing;
+      {/* Any other sections you might want to add */}
+    </div>
+  )
+}
+
+export default Landing

@@ -10,11 +10,11 @@ const Button = ({ mode, text, ...props }: ButtonProps) => {
     <>
       {mode === "white" && (
         <button
-          {...props}
-          className="bg-white text-black text-center text-xl border border-gray-400 font-normal tracking-[0.6px] leading-[72px] w-full h-12 flex items-center justify-center max-md:text-base"
-        >
-          {text}
-        </button>
+        {...props}
+        className="bg-white text-black text-center text-xl border border-gray-400 font-normal tracking-[0.6px] leading-[72px] w-full h-12 flex items-center justify-center max-md:text-base"
+      > 
+        {text}
+      </button>
       )}
 
       {mode === "brown" && (
@@ -25,8 +25,7 @@ const Button = ({ mode, text, ...props }: ButtonProps) => {
           {text}
         </button>
       )}
-
-      {mode === "transparent" && (
+{mode === "transparent" && (
         <button
           {...props}
           className="text-white border-white border-2 text-center text-xl font-normal tracking-[0.6px] leading-[72px] w-full h-12 flex items-center justify-center max-md:text-base"

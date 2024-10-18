@@ -11,7 +11,7 @@ import {
   Search,
   Shop,
   SingleOrderHistory,
-  SingleProduct,
+  
   UserProfile,
 } from "./pages";
 import { checkoutAction, searchAction } from "./actions/index";
@@ -37,10 +37,7 @@ const router = createBrowserRouter([
         element: <Shop />,
         loader: shopCategoryLoader,
       },
-      {
-        path: "product/:id",
-        element: <SingleProduct />,
-      },
+    
       {
         path: "cart",
         element: <Cart />,
