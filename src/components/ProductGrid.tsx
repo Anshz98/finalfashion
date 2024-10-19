@@ -1,32 +1,46 @@
-import React, { useState, useRef } from 'react';
-import { Link } from 'react-router-dom';
- 
+import React, { useState, useEffect, useRef } from 'react';
+
 interface ProductCardProps {
   id: string;
+  image: string;
 }
- 
-const ProductCard: React.FC<ProductCardProps> = ({ id }) => {
+
+const ProductCard: React.FC<ProductCardProps> = ({ id, image }) => {
   const [isSaved, setIsSaved] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
-  const [productImage, setProductImage] = useState<string | null>(null);
-  const fileInputRef = useRef<HTMLInputElement>(null);
   const [isHovered, setIsHovered] = useState(false);
- 
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // Toggle the saved state
   const handleSaveClick = () => {
-    setIsSaved((prev) => !prev);
+    setIsSaved(prev => !prev);
   };
- 
-  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        setProductImage(e.target?.result as string);
-      };
-      reader.readAsDataURL(file);
-    }
+
+  // Copy product ID to clipboard
+  const handleCopyProductCode = () => {
+    navigator.clipboard.writeText(`Product ID: ${id}`)
+      .then(() => alert('Product code copied to clipboard!'))
+      .catch(() => alert('Failed to copy product code.'));
   };
- 
+
+  // Placeholder for share functionality
+  const handleShare = () => {
+    alert('Share functionality to be implemented');
+  };
+
+  // Close the dropdown if clicked outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setShowDropdown(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [dropdownRef]);
+
   return (
     <div 
       className="relative aspect-square bg-gray-100 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
@@ -34,65 +48,51 @@ const ProductCard: React.FC<ProductCardProps> = ({ id }) => {
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-        {productImage ? (
-          <img src={productImage} alt="Product" className="w-full h-full object-cover" />
-        ) : (
-          <span className="text-gray-500 text-lg font-medium">Image Here</span>
-        )}
+        <img src={image} alt={`Product ${id}`} className="w-full h-full object-cover" />
       </div>
- 
-      <input
-        type="file"
-        ref={fileInputRef}
-        onChange={handleImageUpload}
-        className="hidden"
-        accept="image/*"
-      />
- 
+
       {isHovered && (
         <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-between p-4">
+          {/* Dropdown at the top-right corner */}
           <div className="flex justify-end">
-            <button
-              className="bg-blue-800 text-white px-4 py-2 rounded-full text-sm font-semibold hover:bg-blue-700 transition-colors duration-200"
-              onClick={handleSaveClick}
-            >
-              {isSaved ? 'Saved' : 'Save'}
-            </button>
-          </div>
-          
-          <div className="flex justify-between items-end">
-            <Link
-              to={`/product/${id}`}
-              className="bg-white text-gray-800 px-4 py-2 rounded-full text-sm font-semibold hover:bg-gray-100 transition-colors duration-200"
-            >
-              View
-            </Link>
-            
             <div className="relative">
               <button
-                onClick={() => setShowDropdown((prev) => !prev)}
+                onClick={() => setShowDropdown(prev => !prev)}
                 className="text-white hover:text-gray-200 transition-colors duration-200"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
-                  <path fillRule="evenodd" d="M4.5 12a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zm6 0a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zm6 0a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0z" clipRule="evenodd" />
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" className="bi bi-three-dots" viewBox="0 0 16 16">
+                  <path d="M3 9.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm5 0a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm5 0a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"/>
                 </svg>
               </button>
               {showDropdown && (
-                <div className="absolute right-0 bottom-full mb-2 bg-white shadow-lg rounded-md z-10">
+                <div 
+                  ref={dropdownRef} 
+                  className="absolute right-0 bg-white shadow-lg rounded-md z-50 w-48"
+                  style={{ top: '100%', marginTop: '8px' }}
+                >
                   <ul className="py-1">
                     <li>
-                      <button className="w-full text-left text-gray-700 hover:bg-gray-100 px-4 py-2 text-sm" onClick={() => alert('Product code copied!')}>
+                      <button 
+                        className="w-full text-left text-gray-700 hover:bg-gray-100 px-4 py-2 text-sm" 
+                        onClick={() => window.open(`/product/${id}`, '_blank')}
+                      >
+                        Open in New Window
+                      </button>
+                    </li>
+                    <li>
+                      <button 
+                        className="w-full text-left text-gray-700 hover:bg-gray-100 px-4 py-2 text-sm" 
+                        onClick={handleCopyProductCode}
+                      >
                         Copy Product Code
                       </button>
                     </li>
                     <li>
-                      <button className="w-full text-left text-gray-700 hover:bg-gray-100 px-4 py-2 text-sm" onClick={() => alert('Product code shared!')}>
-                        Share Product Code
-                      </button>
-                    </li>
-                    <li>
-                      <button className="w-full text-left text-gray-700 hover:bg-gray-100 px-4 py-2 text-sm" onClick={() => alert('Opening in new window...')}>
-                        Open in New Window
+                      <button 
+                        className="w-full text-left text-gray-700 hover:bg-gray-100 px-4 py-2 text-sm" 
+                        onClick={handleShare}
+                      >
+                        Share
                       </button>
                     </li>
                   </ul>
@@ -100,21 +100,59 @@ const ProductCard: React.FC<ProductCardProps> = ({ id }) => {
               )}
             </div>
           </div>
+
+          {/* Save button at the bottom-right corner */}
+          <div className="flex justify-between items-end">
+            <a
+              href={`/product/${id}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white text-gray-800 px-4 py-2 rounded-full text-sm font-semibold hover:bg-gray-100 transition-colors duration-200"
+            >
+              View
+            </a>
+
+            <button
+              onClick={handleSaveClick}
+              className={`px-4 py-2 rounded-full text-sm font-semibold ${isSaved ? 'bg-[#003153]' : 'bg-[#003153]'} text-white`}
+            >
+              {isSaved ? 'Saved' : 'Save'}
+            </button>
+          </div>
         </div>
       )}
     </div>
   );
-}
- 
+};
+
 export default function ProductGrid() {
-  const products = Array(20).fill(null).map((_, index) => ({
-    id: `product-${index + 1}`,
-  }));
- 
+  const products = [
+    { id: 'product-1', image: 'icons/icon-1.jpeg' },
+    { id: 'product-2', image: 'icons/icon-2.png' },
+    { id: 'product-3', image: 'icons/icon-3.png' },
+    { id: 'product-4', image: 'icons/icon-4.png' },
+    { id: 'product-5', image: 'icons/icon-5.png' },
+    { id: 'product-6', image: 'icons/icon-6.png' },
+    { id: 'product-7', image: 'icons/icon-7.png' },
+    { id: 'product-8', image: 'icons/icon-8.png' },
+    { id: 'product-9', image: 'icons/icon-9.png' },
+    { id: 'product-10', image: 'icons/icon-10.png' },
+    { id: 'product-11', image: 'icons/icon-11.png' },
+    { id: 'product-12', image: 'icons/icon-12.png' },
+    { id: 'product-13', image: 'icons/icon-13.png' },
+    { id: 'product-14', image: 'icons/icon-14.png' },
+    { id: 'product-15', image: 'icons/icon-15.png' },
+    { id: 'product-16', image: 'icons/icon-16.png' },
+    { id: 'product-17', image: 'icons/icon-17.png' },
+    { id: 'product-18', image: 'icons/icon-18.png' },
+    { id: 'product-19', image: 'icons/icon-19.png' },
+    { id: 'product-20', image: 'icons/icon-20.png' }
+  ];
+
   return (
     <div className="max-w-screen-2xl px-5 mx-auto mt-24">
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-        {products.map((product) => (
+        {products.map(product => (
           <ProductCard key={product.id} {...product} />
         ))}
       </div>
