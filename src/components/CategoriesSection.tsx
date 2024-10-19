@@ -19,7 +19,7 @@ const CategoriesSection: React.FC = () => {
           link="shop/oldmoney"
         />
         <CategoryItem
-          categoryTitle="Summer Edition"
+          categoryTitle="Summer Edition 1"
           image="luxury category 3.png"
           link="shop/summer"
         />
