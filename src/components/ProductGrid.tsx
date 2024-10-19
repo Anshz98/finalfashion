@@ -128,7 +128,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ id, image }) => {
 export default function ProductGrid() {
   const products = [
     { id: 'product-1', image: 'icons/icon-1.jpeg' },
-    { id: 'product-2', image: 'icons/icon-2.png' },
+    { id: 'product-2', image: 'icons/icon-2.jpeg' },
     { id: 'product-3', image: 'icons/icon-3.png' },
     { id: 'product-4', image: 'icons/icon-4.png' },
     { id: 'product-5', image: 'icons/icon-5.png' },
