@@ -7,8 +7,8 @@ const ImageCarousel = () => {
     'crousel/streetwear.webp',  // Image 1
     'crousel/streetwear2.webp',  // Image 1
     'crousel/streetwear3.webp',  // Image 1
-    'crousel/streetwear.webp',  // Image 1
-    'crousel/streetwear.webp',  // Image 1
+    'crousel/streetwear4.webp',  // Image 1
+    'crousel/streetwear5.webp',  // Image 1
   ];
 
   const totalSlides = slides.length;
