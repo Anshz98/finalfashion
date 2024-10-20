@@ -1,36 +1,47 @@
-import SocialMediaFooter from "./SocialMediaFooter";
-
 const Footer = () => {
   return (
     <>
-      <SocialMediaFooter />
-      <footer className="bg-gray-100 border-t border-secondaryBrown py-6">
-        <div className="max-w-screen-2xl mx-auto px-4 flex flex-col gap-10">
-          {/* Links Section */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
-            <div className="flex flex-col gap-1">
-              <h3 className="text-xl font-semibold text-gray-800">Client Service</h3>
-              <ul className="text-sm text-gray-600 space-y-1"></ul>
-            </div>
-            <div className="flex flex-col gap-1">
-              <h3 className="text-xl font-semibold text-gray-800">Our Brand</h3>
-              <ul className="text-sm text-gray-600 space-y-1"></ul>
-            </div>
-            <div className="flex flex-col gap-1">
-              <h3 className="text-xl font-semibold text-gray-800">Luxury Clothing</h3>
-              <ul className="text-sm text-gray-600 space-y-1"></ul>
-            </div>
+     
+      <footer className="w-full py-6 px-8 bg-[#003153] text-white border-t-2 border-[#ddd] hover:bg-white hover:text-black transition-colors duration-200 max-sm:px-4 max-[400px]:px-3">
+        <div className="max-w-screen-2xl mx-auto px-4 flex flex-col items-center gap-6">
+          {/* Language and Location Line */}
+          <div className="text-sm flex items-center justify-center space-x-4 hover:text-black transition-colors duration-200">
+            <p>Worldwide</p>
+            <span className="text-gray-300">/</span>
+            <p>English</p>
+            <span className="text-gray-300">/</span>
+            <p>French</p>
           </div>
 
-          {/* Global Settings, Logo, and Policies */}
-          <div className="flex flex-col items-center gap-4">
-            <p className="text-sm text-gray-600 flex items-center gap-1">
-              Worldwide / English / French
-            </p>
-            <h4 className="text-2xl font-light text-gray-800 tracking-wide">PINFASHION</h4>
-            <p className="text-xs text-gray-500">All rights reserved ©2024</p>
-            <ul className="flex gap-3 text-sm text-gray-600">
-            </ul>
+          {/* Social Media Line */}
+          <div className="text-sm flex items-center justify-center space-x-4 hover:text-black transition-colors duration-200">
+            <p>Follow us on:</p>
+            <a
+              href="https://facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-[#003153] transition-colors duration-200"
+            >
+              Facebook
+            </a>
+            <span className="text-gray-300">|</span>
+            <a
+              href="https://twitter.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-[#003153] transition-colors duration-200"
+            >
+              Twitter
+            </a>
+            <span className="text-gray-300">|</span>
+            <a
+              href="https://instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-[#003153] transition-colors duration-200"
+            >
+              Instagram
+            </a>
           </div>
         </div>
       </footer>
@@ -39,3 +50,4 @@ const Footer = () => {
 };
 
 export default Footer;
+
