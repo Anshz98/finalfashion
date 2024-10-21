@@ -1,18 +1,12 @@
 import { useEffect, useState } from "react";
-import toast from "react-hot-toast";
 import { HiXMark } from "react-icons/hi2";
 import { Link, useNavigate } from "react-router-dom";
 import { useAppSelector } from "../hooks";
 import { setLoginStatus } from "../features/auth/authSlice";
 import { store } from "../store";
+import toast from "react-hot-toast";
 
-const SidebarMenu = ({
-  isSidebarOpen,
-  setIsSidebarOpen,
-}: {
-  isSidebarOpen: boolean;
-  setIsSidebarOpen: (prev: boolean) => void;
-}) => {
+const SidebarMenu = ({ isSidebarOpen, setIsSidebarOpen }: { isSidebarOpen: boolean; setIsSidebarOpen: (prev: boolean) => void; }) => {
   const [isAnimating, setIsAnimating] = useState(false);
   const { loginStatus } = useAppSelector((state) => state.auth);
   const navigate = useNavigate();
@@ -77,14 +71,12 @@ const SidebarMenu = ({
               Search
             </Link>
             {loginStatus ? (
-              <>
-                <button
-                  onClick={logout}
-                  className="py-2 border-y border-secondaryBrown w-full block flex justify-center"
-                >
-                  Logout
-                </button>
-              </>
+              <button
+                onClick={logout}
+                className="py-2 border-y border-secondaryBrown w-full block flex justify-center"
+              >
+                Logout
+              </button>
             ) : (
               <>
                 <Link
@@ -113,4 +105,5 @@ const SidebarMenu = ({
     </>
   );
 };
+
 export default SidebarMenu;

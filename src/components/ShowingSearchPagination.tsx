@@ -12,6 +12,7 @@ const ShowingSearchPagination = ({
 }) => {
   const { totalProducts, showingProducts } = useAppSelector(state => state.shop);
   const navigate = useNavigate();
+  
   return (
     <div className="px-5 max-[400px]:px-3 mt-12 mb-24">
       <div className="flex flex-col gap-6 justify-center items-center w-1/2 mx-auto max-sm:w-3/4 max-sm:gap-5">
@@ -31,4 +32,5 @@ const ShowingSearchPagination = ({
     </div>
   );
 };
+
 export default ShowingSearchPagination;

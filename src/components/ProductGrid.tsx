@@ -137,16 +137,16 @@ export default function ProductGrid() {
     { id: 'product-8', image: 'icons/icon-8.jpg' },
     { id: 'product-9', image: 'icons/icon-9.jpg' },
     { id: 'product-10', image: 'icons/icon-10.jpg' },
-    { id: 'product-11', image: 'icons/icon-11.png' },
-    { id: 'product-12', image: 'icons/icon-12.png' },
-    { id: 'product-13', image: 'icons/icon-13.png' },
-    { id: 'product-14', image: 'icons/icon-14.png' },
-    { id: 'product-15', image: 'icons/icon-15.png' },
-    { id: 'product-16', image: 'icons/icon-16.png' },
-    { id: 'product-17', image: 'icons/icon-17.png' },
-    { id: 'product-18', image: 'icons/icon-18.png' },
-    { id: 'product-19', image: 'icons/icon-19.png' },
-    { id: 'product-20', image: 'icons/icon-20.png' }
+    { id: 'product-11', image: 'icons/icon-12.jpeg' },
+    { id: 'product-12', image: 'icons/icon-13.jpg' },
+    { id: 'product-13', image: 'icons/icon-14.jpg' },
+    { id: 'product-14', image: 'icons/icon-15.jpg' },
+    { id: 'product-15', image: 'icons/icon-16.jpg' },
+    { id: 'product-16', image: 'icons/icon-17.jpg' },
+    { id: 'product-17', image: 'icons/icon-19.jpg' },
+    { id: 'product-18', image: 'icons/icon-20.jpg' },
+    { id: 'product-19', image: 'icons/icon-21.jpg' },
+    { id: 'product-20', image: 'icons/icon-22.jpg' }
   ];
 
   return (

@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   ProductGrid,
   ProductGridWrapper,
@@ -5,22 +6,29 @@ import {
   ShowingPagination,
 } from "../components";
 
-import { useState } from "react";
+interface ShopPageContentProps {
+  category: string;
+  page: number;
+}
 
-const ShopPageContent = ({ category, page} : { category: string; page: number; }) => {
-  const [sortCriteria, setSortCriteria] = useState<string>("");
-  const [ currentPage, setCurrentPage ] = useState(page);
-  
-  
+const ShopPageContent: React.FC<ShopPageContentProps> = ({ category, page }) => {
+  const [sortCriteria, setSortCriteria] = useState<string>("default");
+  const [currentPage, setCurrentPage] = useState(page);
 
   return (
-    <>
+    <div className="max-w-screen-xl mx-auto py-10">
+      {/* Filter and Sort Bar */}
       <ShopFilterAndSort sortCriteria={sortCriteria} setSortCriteria={setSortCriteria} />
-      <ProductGridWrapper sortCriteria={sortCriteria} category={category} page={currentPage} >
+
+      {/* Product Grid */}
+      <ProductGridWrapper sortCriteria={sortCriteria} category={category} page={currentPage}>
         <ProductGrid />
       </ProductGridWrapper>
+
+      {/* Pagination */}
       <ShowingPagination page={currentPage} category={category} setCurrentPage={setCurrentPage} />
-    </>
+    </div>
   );
 };
+
 export default ShopPageContent;

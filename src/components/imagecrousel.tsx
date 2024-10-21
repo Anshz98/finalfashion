@@ -4,7 +4,6 @@ const ImageCarousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(true);
   const slides = [
-    'crousel/streetwear.webp',  // Image 1
     'crousel/streetwear2.webp',  // Image 1
     'crousel/streetwear3.webp',  // Image 1
     'crousel/streetwear4.webp',  // Image 1

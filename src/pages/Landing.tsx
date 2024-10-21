@@ -14,7 +14,6 @@ const Landing: React.FC = () => {
 
       {/* Categories Section */}
       <CategoriesSection />
-
       {/* Any other sections you might want to add */}
     </div>
   );

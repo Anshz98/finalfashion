@@ -1,13 +1,17 @@
-import { formatCategoryName } from "../utils/formatCategoryName";
+import React from "react";
 
-const ShopBanner = ({ category }: { category: string }) => {
+interface ShopBannerProps {
+  category: string;
+}
 
+const ShopBanner: React.FC<ShopBannerProps> = ({ category }) => {
   return (
-    <div className="bg-secondaryBrown text-white py-10 flex justify-center items-center mx-5 my-10">
-      <h2 className="text-3xl max-sm:text-2xl">
-        {category ? formatCategoryName(category) : "Shop page"}
-      </h2>
+    <div className="w-full bg-[#f4f4f4] p-12 text-center">
+      <h1 className="text-4xl font-bold capitalize tracking-wide">
+        {category} Collection
+      </h1>
     </div>
   );
 };
+
 export default ShopBanner;
