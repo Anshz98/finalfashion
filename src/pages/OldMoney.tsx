@@ -1,4 +1,4 @@
-import React from 'react'; 
+import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Heart, Share2, Copy } from 'lucide-react';
 
@@ -67,7 +67,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ image }) => {
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-        <img src={`/icons/${image}`} alt={`Product ${image}`} className="w-full h-full object-cover" />
+        <img src={`/oldmoney/${image}`} alt={`Product ${image}`} className="w-full h-full object-cover" />
       </div>
 
       {isHovered && (
@@ -147,26 +147,26 @@ const ProductCard: React.FC<ProductCardProps> = ({ image }) => {
 
 export default function OldMoney() {
   const products = [
-    { image: 'oldmoney-1.jpg' },
-    { image: 'oldmoney-2.jpg' },
-    { image: 'oldmoney-3.jpg' },
-    { image: 'oldmoney-4.jpg' },
-    { image: 'oldmoney-5.jpg' },
-    { image: 'oldmoney-6.jpg' },
-    { image: 'oldmoney-7.jpg' },
-    { image: 'oldmoney-8.jpg' },
-    { image: 'oldmoney-9.jpg' },
-    { image: 'oldmoney-10.jpg' },
-    { image: 'oldmoney-11.jpg' },
-    { image: 'oldmoney-12.jpg' },
-    { image: 'oldmoney-13.jpg' },
-    { image: 'oldmoney-14.jpg' },
-    { image: 'oldmoney-15.jpg' },
-    { image: 'oldmoney-16.jpg' },
-    { image: 'oldmoney-17.jpg' },
-    { image: 'oldmoney-18.jpg' },
-    { image: 'oldmoney-19.jpg' },
-    { image: 'oldmoney-20.jpg' },
+    { image: 'oldmoney-1.jpeg' },
+    { image: 'oldmoney-2.jpeg' },
+    { image: 'oldmoney-3.jpeg' },
+    { image: 'oldmoney-4.jpeg' },
+    { image: 'oldmoney-5.jpeg' },
+    { image: 'oldmoney-6.jpeg' },
+    { image: 'oldmoney-7.jpeg' },
+    { image: 'oldmoney-8.jpeg' },
+    { image: 'oldmoney-9.jpeg' },
+    { image: 'oldmoney-10.jpeg' },
+    { image: 'oldmoney-11.jpeg' },
+    { image: 'oldmoney-12.jpeg' },
+    { image: 'oldmoney-13.jpeg' },
+    { image: 'oldmoney-14.jpeg' },
+    { image: 'oldmoney-15.jpeg' },
+    { image: 'oldmoney-16.jpeg' },
+    { image: 'oldmoney-17.jpeg' },
+    { image: 'oldmoney-18.jpeg' },
+    { image: 'oldmoney-19.jpeg' },
+    { image: 'oldmoney-20.jpeg' },
   ];
 
   return (

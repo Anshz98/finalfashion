@@ -1,16 +1,35 @@
 import React from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 
 const ProductDetail: React.FC = () => {
   const { image } = useParams<{ image: string }>();
+  const navigate = useNavigate();
+
+  // Determine the collection based on the image name
+  const collection = image?.startsWith('oldmoney') ? 'oldmoney' : 
+                     image?.startsWith('streetwear') ? 'streetwear' : 
+                     image?.startsWith('summer') ? 'summer' : 
+                     image?.startsWith('winter') ? 'winter' : 'shop';
+
+  const handleBack = () => {
+    navigate(`/shop/${collection}`);
+  };
 
   return (
     <div className="max-w-screen-xl mx-auto py-10 px-4">
-      <Link to="/" className="text-blue-600 hover:text-blue-800 mb-4 inline-block">&larr; Back to Shop</Link>
+      {/* Back to Collection Button */}
+      <button
+        onClick={handleBack}
+        className="text-blue-600 hover:text-blue-800 mb-4 inline-block"
+      >
+        &larr; Back to Collection
+      </button>
+
       <div className="grid md:grid-cols-2 gap-8">
         <div>
+          {/* Display the correct image */}
           <img
-            src={`/icons/${image}`}
+            src={`/${collection}/${image}`}
             alt={image}
             className="w-full h-auto object-cover rounded-lg shadow-lg"
           />

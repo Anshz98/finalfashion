@@ -67,7 +67,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ image }) => {
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-        <img src={`/icons/${image}`} alt={`Product ${image}`} className="w-full h-full object-cover" />
+        <img src={`/streetwear/${image}`} alt={`Product ${image}`} className="w-full h-full object-cover" />
       </div>
 
       {isHovered && (
@@ -147,26 +147,26 @@ const ProductCard: React.FC<ProductCardProps> = ({ image }) => {
 
 export default function Streetwear() {
   const products = [
-    { image: 'streetwear-1.jpg' },
-    { image: 'streetwear-2.jpg' },
-    { image: 'streetwear-3.jpg' },
-    { image: 'streetwear-4.jpg' },
-    { image: 'streetwear-5.jpg' },
-    { image: 'streetwear-6.jpg' },
-    { image: 'streetwear-7.jpg' },
-    { image: 'streetwear-8.jpg' },
-    { image: 'streetwear-9.jpg' },
-    { image: 'streetwear-10.jpg' },
-    { image: 'streetwear-11.jpg' },
-    { image: 'streetwear-12.jpg' },
-    { image: 'streetwear-13.jpg' },
-    { image: 'streetwear-14.jpg' },
-    { image: 'streetwear-15.jpg' },
-    { image: 'streetwear-16.jpg' },
-    { image: 'streetwear-17.jpg' },
-    { image: 'streetwear-18.jpg' },
-    { image: 'streetwear-19.jpg' },
-    { image: 'streetwear-20.jpg' },
+    { image: 'streetwear-1.jpeg' },
+    { image: 'streetwear-2.jpeg' },
+    { image: 'streetwear-3.jpeg' },
+    { image: 'streetwear-4.jpeg' },
+    { image: 'streetwear-5.jpeg' },
+    { image: 'streetwear-6.jpeg' },
+    { image: 'streetwear-7.jpeg' },
+    { image: 'streetwear-8.jpeg' },
+    { image: 'streetwear-9.jpeg' },
+    { image: 'streetwear-10.jpeg' },
+    { image: 'streetwear-11.jpeg' },
+    { image: 'streetwear-12.jpeg' },
+    { image: 'streetwear-13.jpeg' },
+    { image: 'streetwear-14.jpeg' },
+    { image: 'streetwear-15.jpeg' },
+    { image: 'streetwear-16.jpeg' },
+    { image: 'streetwear-17.jpeg' },
+    { image: 'streetwear-18.jpeg' },
+    { image: 'streetwear-19.jpeg' },
+    { image: 'streetwear-20.jpeg' },
   ];
 
   return (

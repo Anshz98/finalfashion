@@ -67,7 +67,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ image }) => {
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-        <img src={`/icons/${image}`} alt={`Product ${image}`} className="w-full h-full object-cover" />
+        <img src={`/summer/${image}`} alt={`Product ${image}`} className="w-full h-full object-cover" />
       </div>
 
       {isHovered && (
@@ -147,26 +147,26 @@ const ProductCard: React.FC<ProductCardProps> = ({ image }) => {
 
 export default function Summer() {
   const products = [
-    { image: 'summer-1.jpg' },
-    { image: 'summer-2.jpg' },
-    { image: 'summer-3.jpg' },
-    { image: 'summer-4.jpg' },
-    { image: 'summer-5.jpg' },
-    { image: 'summer-6.jpg' },
-    { image: 'summer-7.jpg' },
-    { image: 'summer-8.jpg' },
-    { image: 'summer-9.jpg' },
-    { image: 'summer-10.jpg' },
-    { image: 'summer-11.jpg' },
-    { image: 'summer-12.jpg' },
-    { image: 'summer-13.jpg' },
-    { image: 'summer-14.jpg' },
-    { image: 'summer-15.jpg' },
-    { image: 'summer-16.jpg' },
-    { image: 'summer-17.jpg' },
-    { image: 'summer-18.jpg' },
-    { image: 'summer-19.jpg' },
-    { image: 'summer-20.jpg' },
+    { image: 'summer-1.jpeg' },
+    { image: 'summer-2.jpeg' },
+    { image: 'summer-3.jpeg' },
+    { image: 'summer-4.jpeg' },
+    { image: 'summer-5.jpeg' },
+    { image: 'summer-6.jpeg' },
+    { image: 'summer-7.jpeg' },
+    { image: 'summer-8.jpeg' },
+    { image: 'summer-9.jpeg' },
+    { image: 'summer-10.jpeg' },
+    { image: 'summer-11.jpeg' },
+    { image: 'summer-12.jpeg' },
+    { image: 'summer-13.jpeg' },
+    { image: 'summer-14.jpeg' },
+    { image: 'summer-15.jpeg' },
+    { image: 'summer-16.jpeg' },
+    { image: 'summer-17.jpeg' },
+    { image: 'summer-18.jpeg' },
+    { image: 'summer-19.jpeg' },
+    { image: 'summer-20.jpeg' },
   ];
 
   return (
