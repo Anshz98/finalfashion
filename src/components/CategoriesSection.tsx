@@ -11,7 +11,7 @@ const CategoriesSection: React.FC = () => {
         <CategoryItem
           categoryTitle="Streetwear"
           image="luxury category 1.png"
-          link="pages/Streetwear"
+          link="shop/streetwear"
         />
         <CategoryItem
           categoryTitle="Old Money"
@@ -19,12 +19,12 @@ const CategoriesSection: React.FC = () => {
           link="shop/oldmoney"
         />
         <CategoryItem
-          categoryTitle="Summer Edition 1"
+          categoryTitle="Summer Edition"
           image="luxury category 3.png"
           link="shop/summer"
         />
         <CategoryItem
-          categoryTitle="Fall Edition"
+          categoryTitle="Winter Edition"
           image="luxury category 4.png"
           link="shop/winter"
         />

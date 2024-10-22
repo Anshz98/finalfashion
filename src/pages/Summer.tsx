@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Heart, Share2, Copy } from 'lucide-react';
 
@@ -7,10 +7,10 @@ interface ProductCardProps {
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ image }) => {
-  const [isSaved, setIsSaved] = useState(false);
-  const [showDropdown, setShowDropdown] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
+  const [isSaved, setIsSaved] = React.useState(false);
+  const [showDropdown, setShowDropdown] = React.useState(false);
+  const [isHovered, setIsHovered] = React.useState(false);
+  const dropdownRef = React.useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
   const handleSaveClick = (e: React.MouseEvent) => {
@@ -47,7 +47,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ image }) => {
     navigate(`/product/${image}`);
   };
 
-  useEffect(() => {
+  React.useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setShowDropdown(false);
@@ -145,32 +145,33 @@ const ProductCard: React.FC<ProductCardProps> = ({ image }) => {
   );
 };
 
-export default function ProductGrid() {
+export default function Summer() {
   const products = [
-    { image: 'icon-1.jpeg' },
-    { image: 'icon-2.jpeg' },
-    { image: 'icon-3.jpeg' },
-    { image: 'icon-4.jpg' },
-    { image: 'icon-5.jpeg' },
-    { image: 'icon-6.jpg' },
-    { image: 'icon-7.jpg' },
-    { image: 'icon-8.jpg' },
-    { image: 'icon-9.jpg' },
-    { image: 'icon-10.jpg' },
-    { image: 'icon-12.jpeg' },
-    { image: 'icon-13.jpg' },
-    { image: 'icon-14.jpg' },
-    { image: 'icon-15.jpg' },
-    { image: 'icon-16.jpg' },
-    { image: 'icon-17.jpg' },
-    { image: 'icon-19.jpg' },
-    { image: 'icon-20.jpg' },
-    { image: 'icon-21.jpg' },
-    { image: 'icon-22.jpg' }
+    { image: 'summer-1.jpg' },
+    { image: 'summer-2.jpg' },
+    { image: 'summer-3.jpg' },
+    { image: 'summer-4.jpg' },
+    { image: 'summer-5.jpg' },
+    { image: 'summer-6.jpg' },
+    { image: 'summer-7.jpg' },
+    { image: 'summer-8.jpg' },
+    { image: 'summer-9.jpg' },
+    { image: 'summer-10.jpg' },
+    { image: 'summer-11.jpg' },
+    { image: 'summer-12.jpg' },
+    { image: 'summer-13.jpg' },
+    { image: 'summer-14.jpg' },
+    { image: 'summer-15.jpg' },
+    { image: 'summer-16.jpg' },
+    { image: 'summer-17.jpg' },
+    { image: 'summer-18.jpg' },
+    { image: 'summer-19.jpg' },
+    { image: 'summer-20.jpg' },
   ];
 
   return (
     <div className="max-w-screen-2xl px-5 mx-auto mt-24">
+      <h1 className="text-4xl font-bold mb-8">Summer Collection</h1>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
         {products.map(product => (
           <ProductCard key={product.image} {...product} />

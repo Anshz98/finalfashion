@@ -12,13 +12,16 @@ import {
   Shop,
   SingleOrderHistory,
   UserProfile,
-} from './pages';
-import ProductDetail from './components/ProductDetail';
+} from './pages'; // Import your base page components
+import ProductDetail from './components/ProductDetail'; // Import the ProductDetail page
 import { checkoutAction, searchAction } from './actions/index';
 import { shopCategoryLoader } from './pages/Shop';
 import { loader as orderHistoryLoader } from './pages/OrderHistory';
 import { loader as singleOrderLoader } from './pages/SingleOrderHistory';
-import Streetwear from './pages/Streetwear';
+import Streetwear from './pages/Streetwear'; // Import the Streetwear page
+import OldMoney from './pages/OldMoney'; // Import the Old Money page
+import Summer from './pages/Summer'; // Import the Summer page
+import Winter from './pages/Winter'; // Import the Winter page
 
 const router = createBrowserRouter([
   {
@@ -27,63 +30,75 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Landing />,
+        element: <Landing />, // Landing page route
       },
       {
         path: 'shop',
-        element: <Shop />,
+        element: <Shop />, // Shop route
       },
       {
-        path: 'shop/Streetwear',
-        element: <Streetwear />,
+        path: 'shop/streetwear',
+        element: <Streetwear />, // Streetwear route
+      },
+      {
+        path: 'shop/oldmoney',
+        element: <OldMoney />, // Old Money route
+      },
+      {
+        path: 'shop/summer',
+        element: <Summer />, // Summer route
+      },
+      {
+        path: 'shop/winter',
+        element: <Winter />, // Winter route
       },
       {
         path: 'shop/:category',
-        element: <Shop />,
+        element: <Shop />, // Dynamic category route
         loader: shopCategoryLoader,
       },
       {
-        path: 'product/:image',
-        element: <ProductDetail />,
+        path: 'product/:image', // Dynamic route for individual product details
+        element: <ProductDetail />, // Product detail route
       },
       {
         path: 'cart',
-        element: <Cart />,
+        element: <Cart />, // Cart route
       },
       {
         path: 'checkout',
-        element: <Checkout />,
+        element: <Checkout />, // Checkout route
         action: checkoutAction,
       },
       {
         path: 'search',
-        action: searchAction,
-        element: <Search />,
+        action: searchAction, // Search action
+        element: <Search />, // Search route
       },
       {
         path: 'login',
-        element: <Login />,
+        element: <Login />, // Login route
       },
       {
         path: 'register',
-        element: <Register />,
+        element: <Register />, // Register route
       },
       {
         path: 'order-confirmation',
-        element: <OrderConfirmation />,
+        element: <OrderConfirmation />, // Order confirmation route
       },
       {
         path: 'user-profile',
-        element: <UserProfile />,
+        element: <UserProfile />, // User profile route
       },
       {
         path: 'order-history',
-        element: <OrderHistory />,
+        element: <OrderHistory />, // Order history route
         loader: orderHistoryLoader,
       },
       {
         path: 'order-history/:id',
-        element: <SingleOrderHistory />,
+        element: <SingleOrderHistory />, // Single order history route
         loader: singleOrderLoader,
       },
     ],

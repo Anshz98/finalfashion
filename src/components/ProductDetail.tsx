@@ -6,7 +6,7 @@ const ProductDetail: React.FC = () => {
 
   return (
     <div className="max-w-screen-xl mx-auto py-10 px-4">
-      <Link to="/shop" className="text-blue-600 hover:text-blue-800 mb-4 inline-block">&larr; Back to Shop</Link>
+      <Link to="/" className="text-blue-600 hover:text-blue-800 mb-4 inline-block">&larr; Back to Shop</Link>
       <div className="grid md:grid-cols-2 gap-8">
         <div>
           <img

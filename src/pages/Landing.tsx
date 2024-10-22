@@ -1,6 +1,5 @@
 import React from 'react';
 import ProductGrid from '../components/ProductGrid';
-import CategoriesSection from '../components/CategoriesSection';
 import ImageCarousel from '../components/imagecrousel'; // Assuming you have an ImageCarousel component
 
 const Landing: React.FC = () => {
@@ -12,9 +11,7 @@ const Landing: React.FC = () => {
       {/* Product Grid */}
       <ProductGrid />
 
-      {/* Categories Section */}
-      <CategoriesSection />
-      {/* Any other sections you might want to add */}
+      {/* You can add any other sections you might want here */}
     </div>
   );
 };
