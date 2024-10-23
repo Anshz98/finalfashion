@@ -4,9 +4,10 @@ import { Heart, Share2, Copy } from 'lucide-react';
 
 interface ProductCardProps {
   image: string;
+  collection?: string;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ image }) => {
+const ProductCard: React.FC<ProductCardProps> = ({ image, collection }) => {
   const [isSaved, setIsSaved] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
@@ -44,7 +45,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ image }) => {
   const handleView = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    navigate(`/product/${image}`);
+    navigate(collection ? `/product/${collection}/${image}` : `/product/${image}`);
   };
 
   useEffect(() => {
@@ -61,13 +62,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ image }) => {
 
   return (
     <Link
-      to={`/product/${image}`}
+      to={collection ? `/product/${collection}/${image}` : `/product/${image}`}
       className="relative aspect-square bg-gray-100 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-        <img src={`/icons/${image}`} alt={`Product ${image}`} className="w-full h-full object-cover" />
+        <img src={collection ? `/${collection}/${image}` : `/icons/${image}`} alt={`Product ${image}`} className="w-full h-full object-cover" />
       </div>
 
       {isHovered && (
