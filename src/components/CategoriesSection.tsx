@@ -9,7 +9,7 @@ const CategoriesSection: React.FC = () => {
       </h2>
       <div className="flex justify-between flex-wrap gap-y-10">
         <CategoryItem
-          categoryTitle="Streetwear"
+          categoryTitle="Streetweer"
           image="luxury category 1.png"
           link="shop/streetwear"
         />
