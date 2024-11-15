@@ -3,12 +3,12 @@ import {
   HiXMark as XMarkIcon,
   HiQuestionMarkCircle as QuestionMarkCircleIcon,
 } from "react-icons/hi2";
-import { useAppDispatch, useAppSelector } from "../hooks";
+import { useAppDispatch, useAppSelector } from "../../hooks";
 import { Link } from "react-router-dom";
 import {
   removeProductFromTheCart,
   updateProductQuantity,
-} from "../features/cart/cartSlice";
+} from "../../features/cart/cartSlice";
 import toast from "react-hot-toast";
 
 const Cart = () => {

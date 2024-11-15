@@ -4,7 +4,7 @@ import {
   ProductGridWrapper,
   ShopFilterAndSort,
   ShowingPagination,
-} from "../components";
+} from ".";
 
 interface ShopPageContentProps {
   category: string;

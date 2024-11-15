@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../components";
 import { checkRegisterFormData } from "../utils/checkRegisterFormData";
-import customFetch from "../axios/custom";
+import customFetch from "../../axios/custom";
 import toast from "react-hot-toast";
 
 const Register = () => {

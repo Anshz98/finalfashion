@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { HiXMark } from "react-icons/hi2";
 import { Link, useNavigate } from "react-router-dom";
-import { useAppSelector } from "../hooks";
-import { setLoginStatus } from "../features/auth/authSlice";
-import { store } from "../store";
+import { useAppSelector } from "../../hooks";
+import { setLoginStatus } from "../../features/auth/authSlice";
+import { store } from "../../store";
 import toast from "react-hot-toast";
 
 const SidebarMenu = ({ isSidebarOpen, setIsSidebarOpen }: { isSidebarOpen: boolean; setIsSidebarOpen: (prev: boolean) => void; }) => {

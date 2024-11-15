@@ -1,8 +1,8 @@
 import { HiTrash as TrashIcon } from "react-icons/hi2";
 import { Button } from "../components";
-import { useAppDispatch, useAppSelector } from "../hooks";
-import { removeProductFromTheCart } from "../features/cart/cartSlice";
-import customFetch from "../axios/custom";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import { removeProductFromTheCart } from "../../features/cart/cartSlice";
+import customFetch from "../../axios/custom";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { checkCheckoutFormData } from "../utils/checkCheckoutFormData";

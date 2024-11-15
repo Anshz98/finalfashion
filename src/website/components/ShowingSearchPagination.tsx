@@ -1,7 +1,7 @@
 import { HiChevronUp } from "react-icons/hi2";
 import Button from "./Button";
 import { useNavigate } from "react-router-dom";
-import { useAppSelector } from "../hooks";
+import { useAppSelector } from "../../hooks";
 
 const ShowingSearchPagination = ({
   page,

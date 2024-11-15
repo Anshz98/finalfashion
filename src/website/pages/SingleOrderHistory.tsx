@@ -5,7 +5,7 @@ import {
   useLoaderData,
   useNavigate,
 } from "react-router-dom";
-import customFetch from "../axios/custom";
+import customFetch from "../../axios/custom";
 import { nanoid } from "nanoid";
 import { formatDate } from "../utils/formatDate";
 

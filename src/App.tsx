@@ -4,7 +4,6 @@ import {
   Checkout,
   HomeLayout,
   Landing,
-  Login,
   OrderConfirmation,
   OrderHistory,
   Register,
@@ -12,16 +11,18 @@ import {
   Shop,
   SingleOrderHistory,
   UserProfile,
-} from './pages'; // Import your base page components
-import ProductDetail from './components/ProductDetail'; // Import the ProductDetail page
+  // Rename Login to UserLogin
+} from './website/pages';
+import Login from './website/pages/login'; // Import renamed UserLogin
+import ProductDetail from './website/components/ProductDetail';
 import { checkoutAction, searchAction } from './actions/index';
-import { shopCategoryLoader } from './pages/Shop';
-import { loader as orderHistoryLoader } from './pages/OrderHistory';
-import { loader as singleOrderLoader } from './pages/SingleOrderHistory';
-import Streetwear from './pages/Streetwear'; // Import the Streetwear page
-import OldMoney from './pages/OldMoney'; // Import the Old Money page
-import Summer from './pages/Summer'; // Import the Summer page
-import Winter from './pages/Winter'; // Import the Winter page
+import { shopCategoryLoader } from './website/pages/Shop';
+import { loader as orderHistoryLoader } from './website/pages/OrderHistory';
+import { loader as singleOrderLoader } from './website/pages/SingleOrderHistory';
+import Streetwear from './website/pages/Streetwear';
+import OldMoney from './website/pages/OldMoney';
+import Summer from './website/pages/Summer';
+import Winter from './website/pages/Winter';
 
 const router = createBrowserRouter([
   {
@@ -30,75 +31,75 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Landing />, // Landing page route
+        element: <Landing />,
       },
       {
         path: 'shop',
-        element: <Shop />, // Shop route
+        element: <Shop />,
       },
       {
         path: 'shop/streetwear',
-        element: <Streetwear />, // Streetwear route
+        element: <Streetwear />,
       },
       {
         path: 'shop/oldmoney',
-        element: <OldMoney />, // Old Money route
+        element: <OldMoney />,
       },
       {
         path: 'shop/summer',
-        element: <Summer />, // Summer route
+        element: <Summer />,
       },
       {
         path: 'shop/winter',
-        element: <Winter />, // Winter route
+        element: <Winter />,
       },
       {
         path: 'shop/:category',
-        element: <Shop />, // Dynamic category route
+        element: <Shop />,
         loader: shopCategoryLoader,
       },
       {
-        path: 'product/:image', // Dynamic route for individual product details
-        element: <ProductDetail />, // Product detail route
+        path: 'product/:image',
+        element: <ProductDetail />,
       },
       {
         path: 'cart',
-        element: <Cart />, // Cart route
+        element: <Cart />,
       },
       {
         path: 'checkout',
-        element: <Checkout />, // Checkout route
+        element: <Checkout />,
         action: checkoutAction,
       },
       {
         path: 'search',
-        action: searchAction, // Search action
-        element: <Search />, // Search route
+        action: searchAction,
+        element: <Search />,
       },
       {
         path: 'login',
-        element: <Login />, // Login route
+        element: <Login />, // Use renamed UserLogin
       },
       {
         path: 'register',
-        element: <Register />, // Register route
+        element: <Register />,
       },
       {
         path: 'order-confirmation',
-        element: <OrderConfirmation />, // Order confirmation route
+        element: <OrderConfirmation />,
       },
       {
         path: 'user-profile',
-        element: <UserProfile />, // User profile route
+        element: <UserProfile />,
       },
       {
         path: 'order-history',
-        element: <OrderHistory />, // Order history route
+        element: <OrderHistory />,
         loader: orderHistoryLoader,
       },
       {
         path: 'order-history/:id',
-        element: <SingleOrderHistory />, // Single order history route
+        element: <SingleOrderHistory />,
         loader: singleOrderLoader,
       },
     ],

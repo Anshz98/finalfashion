@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import Button from "../components/Button";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import customFetch from "../axios/custom";
+import customFetch from "../../axios/custom";
 import { checkUserProfileFormData } from "../utils/checkUserProfileFormData";
-import { setLoginStatus } from "../features/auth/authSlice";
-import { store } from "../store";
+import { setLoginStatus } from "../../features/auth/authSlice";
+import { store } from "../../store";
 
 const UserProfile = () => {
   const navigate = useNavigate();
