@@ -11,14 +11,9 @@ import {
   Shop,
   SingleOrderHistory,
   UserProfile,
-  // Rename Login to UserLogin
 } from './website/pages';
-import Login from './website/pages/login'; // Import renamed UserLogin
+import Login from './website/pages/login';
 import ProductDetail from './website/components/ProductDetail';
-import { checkoutAction, searchAction } from './actions/index';
-import { shopCategoryLoader } from './website/pages/Shop';
-import { loader as orderHistoryLoader } from './website/pages/OrderHistory';
-import { loader as singleOrderLoader } from './website/pages/SingleOrderHistory';
 import Streetwear from './website/pages/Streetwear';
 import OldMoney from './website/pages/OldMoney';
 import Summer from './website/pages/Summer';
@@ -54,12 +49,7 @@ const router = createBrowserRouter([
         element: <Winter />,
       },
       {
-        path: 'shop/:category',
-        element: <Shop />,
-        loader: shopCategoryLoader,
-      },
-      {
-        path: 'product/:image',
+        path: 'product/:collection/:image',
         element: <ProductDetail />,
       },
       {
@@ -69,16 +59,14 @@ const router = createBrowserRouter([
       {
         path: 'checkout',
         element: <Checkout />,
-        action: checkoutAction,
       },
       {
         path: 'search',
-        action: searchAction,
         element: <Search />,
       },
       {
         path: 'login',
-        element: <Login />, // Use renamed UserLogin
+        element: <Login />,
       },
       {
         path: 'register',
@@ -95,12 +83,10 @@ const router = createBrowserRouter([
       {
         path: 'order-history',
         element: <OrderHistory />,
-        loader: orderHistoryLoader,
       },
       {
         path: 'order-history/:id',
         element: <SingleOrderHistory />,
-        loader: singleOrderLoader,
       },
     ],
   },

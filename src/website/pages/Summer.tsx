@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Heart, Share2, Copy } from 'lucide-react';
 
 interface ProductCardProps {
@@ -11,7 +11,6 @@ const ProductCard: React.FC<ProductCardProps> = ({ image }) => {
   const [showDropdown, setShowDropdown] = React.useState(false);
   const [isHovered, setIsHovered] = React.useState(false);
   const dropdownRef = React.useRef<HTMLDivElement>(null);
-  const navigate = useNavigate();
 
   const handleSaveClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -41,12 +40,6 @@ const ProductCard: React.FC<ProductCardProps> = ({ image }) => {
     });
   };
 
-  const handleView = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    navigate(`/product/${image}`);
-  };
-
   React.useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
@@ -61,13 +54,21 @@ const ProductCard: React.FC<ProductCardProps> = ({ image }) => {
 
   return (
     <Link
-      to={`/product/${image}`}
-      className="relative aspect-square bg-gray-100 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
+      to={`/product/summer/${image}`}
+      className="relative aspect-square bg-gray-100 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 block"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-        <img src={`/summer/${image}`} alt={`Product ${image}`} className="w-full h-full object-cover" />
+        <img 
+          src={`/summer/${image}`} 
+          alt={`Product ${image}`} 
+          className="w-full h-full object-cover"
+          onError={(e) => {
+            const target = e.target as HTMLImageElement;
+            target.src = '/placeholder.svg';
+          }}
+        />
       </div>
 
       {isHovered && (
@@ -126,7 +127,6 @@ const ProductCard: React.FC<ProductCardProps> = ({ image }) => {
 
           <div className="flex justify-between items-end">
             <button
-              onClick={handleView}
               className="bg-white text-gray-800 px-4 py-2 rounded-full text-sm font-semibold hover:bg-gray-100 transition-colors duration-200"
             >
               View

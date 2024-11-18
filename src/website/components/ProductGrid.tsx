@@ -4,7 +4,7 @@ import { Heart, Share2, Copy } from 'lucide-react';
 
 interface ProductCardProps {
   image: string;
-  collection?: string;
+  collection?: string; // Optional collection for categorizing images
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ image, collection }) => {
@@ -62,13 +62,21 @@ const ProductCard: React.FC<ProductCardProps> = ({ image, collection }) => {
 
   return (
     <Link
-      to={collection ? `/product/${collection}/${image}` : `/product/${image}`}
+      to={collection ? `/product/${collection}/${image}` : `/product/icons/${image}`}
       className="relative aspect-square bg-gray-100 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-        <img src={collection ? `/${collection}/${image}` : `/icons/${image}`} alt={`Product ${image}`} className="w-full h-full object-cover" />
+        <img
+          src={collection ? `/${collection}/${image}` : `/icons/${image}`}
+          alt={`Product ${image}`}
+          className="w-full h-full object-cover"
+          onError={(e) => {
+            const target = e.target as HTMLImageElement;
+            target.src = '/placeholder.svg'; // Fallback for missing images
+          }}
+        />
       </div>
 
       {isHovered && (
@@ -148,26 +156,26 @@ const ProductCard: React.FC<ProductCardProps> = ({ image, collection }) => {
 
 export default function ProductGrid() {
   const products = [
-    { image: 'icon-1.jpeg' },
-    { image: 'icon-2.jpeg' },
-    { image: 'icon-3.jpeg' },
-    { image: 'icon-4.jpg' },
-    { image: 'icon-5.jpeg' },
-    { image: 'icon-6.jpg' },
-    { image: 'icon-7.jpg' },
-    { image: 'icon-8.jpg' },
-    { image: 'icon-9.jpg' },
-    { image: 'icon-10.jpg' },
-    { image: 'icon-12.jpeg' },
-    { image: 'icon-13.jpg' },
-    { image: 'icon-14.jpg' },
-    { image: 'icon-15.jpg' },
-    { image: 'icon-16.jpg' },
-    { image: 'icon-17.jpg' },
-    { image: 'icon-19.jpg' },
-    { image: 'icon-20.jpg' },
-    { image: 'icon-21.jpg' },
-    { image: 'icon-22.jpg' }
+    { image: 'icon-1.jpeg', collection: 'icons' },
+    { image: 'icon-2.jpeg', collection: 'icons' },
+    { image: 'icon-3.jpeg', collection: 'icons' },
+    { image: 'icon-4.jpg', collection: 'icons' },
+    { image: 'icon-5.jpeg', collection: 'icons' },
+    { image: 'icon-6.jpg', collection: 'icons' },
+    { image: 'icon-7.jpg', collection: 'icons' },
+    { image: 'icon-8.jpg', collection: 'icons' },
+    { image: 'icon-9.jpg', collection: 'icons' },
+    { image: 'icon-10.jpg', collection: 'icons' },
+    { image: 'icon-12.jpeg', collection: 'icons' },
+    { image: 'icon-13.jpg', collection: 'icons' },
+    { image: 'icon-14.jpg', collection: 'icons' },
+    { image: 'icon-15.jpg', collection: 'icons' },
+    { image: 'icon-16.jpg', collection: 'icons' },
+    { image: 'icon-17.jpg', collection: 'icons' },
+    { image: 'icon-19.jpg', collection: 'icons' },
+    { image: 'icon-20.jpg', collection: 'icons' },
+    { image: 'icon-21.jpg', collection: 'icons' },
+    { image: 'icon-22.jpg', collection: 'icons' }
   ];
 
   return (

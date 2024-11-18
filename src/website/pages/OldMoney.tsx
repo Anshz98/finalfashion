@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Heart, Share2, Copy } from 'lucide-react';
 
 interface ProductCardProps {
@@ -11,12 +11,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ image }) => {
   const [showDropdown, setShowDropdown] = React.useState(false);
   const [isHovered, setIsHovered] = React.useState(false);
   const dropdownRef = React.useRef<HTMLDivElement>(null);
-  const navigate = useNavigate();
 
   const handleSaveClick = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    setIsSaved(prev => !prev);
+    setIsSaved((prev) => !prev);
   };
 
   const handleAddToWishlist = (e: React.MouseEvent) => {
@@ -34,17 +33,14 @@ const ProductCard: React.FC<ProductCardProps> = ({ image }) => {
   const handleCopyOutfitCode = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    navigator.clipboard.writeText(`Outfit Code: ${image}`).then(() => {
-      alert('Outfit Code copied to clipboard!');
-    }, (err) => {
-      console.error('Could not copy text: ', err);
-    });
-  };
-
-  const handleView = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    navigate(`/product/${image}`);
+    navigator.clipboard.writeText(`Outfit Code: ${image}`).then(
+      () => {
+        alert('Outfit Code copied to clipboard!');
+      },
+      (err) => {
+        console.error('Could not copy text: ', err);
+      }
+    );
   };
 
   React.useEffect(() => {
@@ -61,13 +57,21 @@ const ProductCard: React.FC<ProductCardProps> = ({ image }) => {
 
   return (
     <Link
-      to={`/product/${image}`}
-      className="relative aspect-square bg-gray-100 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
+      to={`/product/oldmoney/${image}`}
+      className="relative aspect-square bg-gray-100 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 block"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-        <img src={`/oldmoney/${image}`} alt={`Product ${image}`} className="w-full h-full object-cover" />
+        <img
+          src={`/oldmoney/${image}`}
+          alt={`Product ${image}`}
+          className="w-full h-full object-cover"
+          onError={(e) => {
+            const target = e.target as HTMLImageElement;
+            target.src = '/placeholder.svg'; // Fallback for missing images
+          }}
+        />
       </div>
 
       {isHovered && (
@@ -78,41 +82,48 @@ const ProductCard: React.FC<ProductCardProps> = ({ image }) => {
                 onClick={(e) => {
                   e.preventDefault();
                   e.stopPropagation();
-                  setShowDropdown(prev => !prev);
+                  setShowDropdown((prev) => !prev);
                 }}
                 className="text-white hover:text-gray-200 transition-colors duration-200"
                 aria-label="More options"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" className="bi bi-three-dots" viewBox="0 0 16 16">
-                  <path d="M3 9.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm5 0a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm5 0a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"/>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  fill="currentColor"
+                  className="bi bi-three-dots"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M3 9.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm5 0a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm5 0a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
                 </svg>
               </button>
               {showDropdown && (
-                <div 
-                  ref={dropdownRef} 
+                <div
+                  ref={dropdownRef}
                   className="absolute right-0 bg-white shadow-lg rounded-md z-50 w-48"
                   style={{ top: '100%', marginTop: '8px' }}
                 >
                   <ul className="py-1">
                     <li>
-                      <button 
-                        className="w-full text-left text-gray-700 hover:bg-gray-100 px-4 py-2 text-sm flex items-center" 
+                      <button
+                        className="w-full text-left text-gray-700 hover:bg-gray-100 px-4 py-2 text-sm flex items-center"
                         onClick={handleAddToWishlist}
                       >
                         <Heart className="mr-2 h-4 w-4" /> Add to Wishlist
                       </button>
                     </li>
                     <li>
-                      <button 
-                        className="w-full text-left text-gray-700 hover:bg-gray-100 px-4 py-2 text-sm flex items-center" 
+                      <button
+                        className="w-full text-left text-gray-700 hover:bg-gray-100 px-4 py-2 text-sm flex items-center"
                         onClick={handleShareOutfitCode}
                       >
                         <Share2 className="mr-2 h-4 w-4" /> Share Outfit Code
                       </button>
                     </li>
                     <li>
-                      <button 
-                        className="w-full text-left text-gray-700 hover:bg-gray-100 px-4 py-2 text-sm flex items-center" 
+                      <button
+                        className="w-full text-left text-gray-700 hover:bg-gray-100 px-4 py-2 text-sm flex items-center"
                         onClick={handleCopyOutfitCode}
                       >
                         <Copy className="mr-2 h-4 w-4" /> Copy Outfit Code
@@ -126,7 +137,6 @@ const ProductCard: React.FC<ProductCardProps> = ({ image }) => {
 
           <div className="flex justify-between items-end">
             <button
-              onClick={handleView}
               className="bg-white text-gray-800 px-4 py-2 rounded-full text-sm font-semibold hover:bg-gray-100 transition-colors duration-200"
             >
               View
@@ -134,7 +144,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ image }) => {
 
             <button
               onClick={handleSaveClick}
-              className={`px-4 py-2 rounded-full text-sm font-semibold ${isSaved ? 'bg-[#003153]' : 'bg-[#003153]'} text-white`}
+              className={`px-4 py-2 rounded-full text-sm font-semibold ${
+                isSaved ? 'bg-[#003153]' : 'bg-[#003153]'
+              } text-white`}
             >
               {isSaved ? 'Saved' : 'Save'}
             </button>
@@ -173,7 +185,7 @@ export default function OldMoney() {
     <div className="max-w-screen-2xl px-5 mx-auto mt-24">
       <h1 className="text-4xl font-bold mb-8">Old Money Collection</h1>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
-        {products.map(product => (
+        {products.map((product) => (
           <ProductCard key={product.image} {...product} />
         ))}
       </div>
