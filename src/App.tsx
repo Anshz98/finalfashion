@@ -11,18 +11,24 @@ import {
   Shop,
   SingleOrderHistory,
   UserProfile,
+  Streetwear,
+  OldMoney,
+  Summer,
+  Winter,
 } from './website/pages';
 import Login from './website/pages/login';
 import ProductDetail from './website/components/ProductDetail';
-import Streetwear from './website/pages/Streetwear';
-import OldMoney from './website/pages/OldMoney';
-import Summer from './website/pages/Summer';
-import Winter from './website/pages/Winter';
+import ChatBox from './chatbox/ChatBox'; // Import the ChatBox component
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <HomeLayout />,
+    element: (
+      <>
+        <HomeLayout />
+        <ChatBox /> {/* Add ChatBox */}
+      </>
+    ),
     children: [
       {
         index: true,
@@ -84,10 +90,13 @@ const router = createBrowserRouter([
         path: 'order-history',
         element: <OrderHistory />,
       },
-      
       {
         path: 'order-history/:id',
         element: <SingleOrderHistory />,
+      },
+      {
+        path: '*',
+        element: <div>404 - Page Not Found</div>,
       },
     ],
   },
