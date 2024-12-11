@@ -1,4 +1,4 @@
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import {
   Cart,
   Checkout,
@@ -11,92 +11,83 @@ import {
   Shop,
   SingleOrderHistory,
   UserProfile,
-  Streetwear,
-  OldMoney,
-  Summer,
-  Winter,
-} from './website/pages';
-import Login from './website/pages/login';
-import ProductDetail from './website/components/ProductDetail';
-import ChatBox from './chatbox/ChatBox'; // Import the ChatBox component
+} from "./website/pages";
+import Login from "./website/pages/login";
+import ProductDetail from "./website/components/ProductDetail";
+import Streetwear from "./website/pages/Streetwear";
+import OldMoney from "./website/pages/OldMoney";
+import Summer from "./website/pages/Summer";
+import Winter from "./website/pages/Winter";
 
 const router = createBrowserRouter([
   {
-    path: '/',
-    element: (
-      <>
-        <HomeLayout />
-        <ChatBox /> {/* Add ChatBox */}
-      </>
-    ),
+    path: "/",
+    element: <HomeLayout />,
     children: [
       {
         index: true,
         element: <Landing />,
       },
       {
-        path: 'shop',
+        path: "shop",
         element: <Shop />,
       },
       {
-        path: 'shop/streetwear',
+        path: "shop/streetwear",
         element: <Streetwear />,
       },
       {
-        path: 'shop/oldmoney',
+        path: "shop/oldmoney",
         element: <OldMoney />,
       },
       {
-        path: 'shop/summer',
+        path: "shop/summer",
         element: <Summer />,
       },
       {
-        path: 'shop/winter',
+        path: "shop/winter",
         element: <Winter />,
       },
       {
-        path: 'product/:collection/:image',
+        path: "product/:collection/:image",
         element: <ProductDetail />,
       },
       {
-        path: 'cart',
+        path: "cart",
         element: <Cart />,
       },
       {
-        path: 'checkout',
+        path: "checkout",
         element: <Checkout />,
       },
       {
-        path: 'search',
+        path: "search",
         element: <Search />,
       },
       {
-        path: 'login',
+        path: "login",
         element: <Login />,
       },
       {
-        path: 'register',
+        path: "register",
         element: <Register />,
       },
       {
-        path: 'order-confirmation',
+        path: "order-confirmation",
         element: <OrderConfirmation />,
       },
       {
-        path: 'user-profile',
+        path: "user-profile",
         element: <UserProfile />,
       },
       {
-        path: 'order-history',
+        path: "order-history",
         element: <OrderHistory />,
       },
+
       {
-        path: 'order-history/:id',
+        path: "order-history/:id",
         element: <SingleOrderHistory />,
-      },
-      {
-        path: '*',
-        element: <div>404 - Page Not Found</div>,
       },
     ],
   },

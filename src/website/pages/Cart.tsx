@@ -1,9 +1,10 @@
+import React from "react";
 import {
   HiCheck as CheckIcon,
   HiXMark as XMarkIcon,
   HiQuestionMarkCircle as QuestionMarkCircleIcon,
 } from "react-icons/hi2";
-import { useAppDispatch, useAppSelector } from "../../hooks";
+// import { useAppDispatch, useAppSelector } from "../../hooks";
 import { Link } from "react-router-dom";
 import {
   removeProductFromTheCart,
@@ -12,8 +13,27 @@ import {
 import toast from "react-hot-toast";
 
 const Cart = () => {
-  const { productsInCart, subtotal } = useAppSelector((state) => state.cart);
-  const dispatch = useAppDispatch();
+  const oldCart = localStorage.getItem("cart");
+  const [productsInCart, setProductsInCart] = React.useState(
+    oldCart ? JSON.parse(oldCart) : [],
+  );
+  const [subtotal, setSubtotal] = React.useState(0);
+  React.useEffect(() => {
+    if (productsInCart.length > 0) {
+      localStorage.setItem("cart", JSON.stringify(productsInCart));
+      setSubtotal(
+        productsInCart.reduce(function (acc, obj) {
+          return acc + obj.price * obj.quantity;
+        }, 0),
+      );
+    } else {
+      localStorage.removeItem("cart");
+      setSubtotal(0);
+    }
+  }, [productsInCart]);
+
+  //const { productsInCart, subtotal } = useAppSelector((state) => state.cart);
+  //const dispatch = useAppDispatch();
 
   return (
     <div className="bg-white mx-auto max-w-screen-2xl px-5 max-[400px]:px-3">
@@ -35,7 +55,7 @@ const Cart = () => {
                 <li key={product.id} className="flex py-6 sm:py-10">
                   <div className="flex-shrink-0">
                     <img
-                      src={`/src/assets/${product.image}`}
+                      src={`/${product.category.toLowerCase()}/${product.image}`}
                       alt={product.title}
                       className="h-24 w-24 object-cover object-center sm:h-48 sm:w-48"
                     />
@@ -79,7 +99,7 @@ const Cart = () => {
                               updateProductQuantity({
                                 id: product?.id,
                                 quantity: parseInt(e.target.value),
-                              })
+                              }),
                             );
                           }}
                         />
@@ -88,11 +108,14 @@ const Cart = () => {
                           <button
                             type="button"
                             className="-m-2 inline-flex p-2 text-gray-400 hover:text-gray-500"
-                            onClick={() =>{
-                              dispatch(
-                                removeProductFromTheCart({ id: product?.id })
-                              ); toast.error("Product removed from the cart");}
-                            }
+                            onClick={() => {
+                              setProductsInCart(
+                                productsInCart.filter(
+                                  (o) => o.id !== product.id,
+                                ),
+                              );
+                              toast.error("Product removed from the cart");
+                            }}
                           >
                             <span className="sr-only">Remove</span>
                             <XMarkIcon className="h-5 w-5" aria-hidden="true" />
