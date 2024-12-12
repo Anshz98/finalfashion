@@ -1,16 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Heart, Share2, Copy } from "lucide-react";
 
 // interface ProductCardProps {
 //   image: string;
 // }
 
-const ProductCard: React.FC<any> = ({ product }) => {
-  const oldCart = localStorage.getItem("cart");
-  const [cart, setCart] = React.useState(
-    oldCart !== null ? JSON.parse(oldCart) : [],
-  );
+const ProductCard: React.FC<any> = ({ product, saveClick }) => {
   const [isSaved, setIsSaved] = React.useState(false);
   const [showDropdown, setShowDropdown] = React.useState(false);
   const [isHovered, setIsHovered] = React.useState(false);
@@ -20,12 +16,10 @@ const ProductCard: React.FC<any> = ({ product }) => {
     e.preventDefault();
     e.stopPropagation();
     setIsSaved((prev) => !prev);
-    setCart([...cart, { ...product, quantity: 1 }]);
-  };
 
-  React.useEffect(() => {
-    if (cart.length > 0) localStorage.setItem("cart", JSON.stringify(cart));
-  }, [cart]);
+    const newProduct = { ...product, quantity: 1 };
+    saveClick(newProduct);
+  };
 
   const handleAddToWishlist = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -69,7 +63,7 @@ const ProductCard: React.FC<any> = ({ product }) => {
 
   return (
     <Link
-      to={`/product/winter/${product.image}`}
+      to={`/product/winter/${product.image}/${JSON.stringify(product)}`}
       className="relative aspect-square bg-gray-100 rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 block"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -166,6 +160,23 @@ const ProductCard: React.FC<any> = ({ product }) => {
 };
 
 export default function Winter() {
+  const navigate = useNavigate();
+  const oldCart = localStorage.getItem("cart");
+  const [cart, setCart] = React.useState(
+    oldCart !== null ? JSON.parse(oldCart) : [],
+  );
+  console.log(cart);
+  const addToCart = (product) => {
+    const newProduct = { ...product, quantity: 1 };
+    setCart([...cart, { ...newProduct }]);
+    localStorage.setItem(
+      "cart",
+      JSON.stringify([...cart, { ...product, quantity: 1 }]),
+    );
+    if (window.confirm("Go to Cart?")) {
+      navigate("/cart");
+    }
+  };
   const products = [
     {
       id: 501,
@@ -354,7 +365,11 @@ export default function Winter() {
       <h1 className="text-4xl font-bold mb-8">Winter Collection</h1>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
         {products.map((product) => (
-          <ProductCard key={product.image} product={product} />
+          <ProductCard
+            key={product.image}
+            product={product}
+            saveClick={addToCart}
+          />
         ))}
       </div>
     </div>

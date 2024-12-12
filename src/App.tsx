@@ -49,7 +49,7 @@ const router = createBrowserRouter([
         element: <Winter />,
       },
       {
-        path: "product/:collection/:image",
+        path: "product/:collection/:image/:productString",
         element: <ProductDetail />,
       },
       {

@@ -31,7 +31,19 @@ const Cart = () => {
       setSubtotal(0);
     }
   }, [productsInCart]);
-
+  const removeItem = () => {
+    setProductsInCart(productsInCart.filter((o) => o.id !== product.id));
+    toast.error("Product removed from the cart");
+  };
+  const updateQuantity = (product, quantity) => {
+    let prod = product;
+    prod["quantity"] = quantity;
+    setProductsInCart([
+      ...productsInCart.filter((o) => o.id !== product.id),
+      prod,
+    ]);
+    toast.error("Product updated");
+  };
   //const { productsInCart, subtotal } = useAppSelector((state) => state.cart);
   //const dispatch = useAppDispatch();
 
@@ -95,12 +107,11 @@ const Cart = () => {
                           className="w-16 h-7 indent-1 bg-white border"
                           value={product?.quantity}
                           onChange={(e) => {
-                            dispatch(
-                              updateProductQuantity({
-                                id: product?.id,
-                                quantity: parseInt(e.target.value),
-                              }),
-                            );
+                            if (parseInt(e.target.value) == 0) {
+                              removeItem();
+                            } else {
+                              updateQuantity(product, parseInt(e.target.value));
+                            }
                           }}
                         />
 
@@ -108,14 +119,7 @@ const Cart = () => {
                           <button
                             type="button"
                             className="-m-2 inline-flex p-2 text-gray-400 hover:text-gray-500"
-                            onClick={() => {
-                              setProductsInCart(
-                                productsInCart.filter(
-                                  (o) => o.id !== product.id,
-                                ),
-                              );
-                              toast.error("Product removed from the cart");
-                            }}
+                            onClick={removeItem}
                           >
                             <span className="sr-only">Remove</span>
                             <XMarkIcon className="h-5 w-5" aria-hidden="true" />
