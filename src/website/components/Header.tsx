@@ -21,7 +21,7 @@ const Header = () => {
         <Link to="/shop/oldmoney" className="text-xl font-medium transition-colors duration-200">Old Money</Link>
         <Link to="/shop/summer" className="text-xl font-medium transition-colors duration-200">Summer</Link>
         <Link to="/shop/winter" className="text-xl font-medium transition-colors duration-200">Winter</Link>
-        <Link to="/all-items" className="text-xl font-medium transition-colors duration-200">All Items</Link>
+
       </nav>
 
       <div className="flex gap-6 items-center">
