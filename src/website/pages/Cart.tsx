@@ -31,7 +31,7 @@ const Cart = () => {
       setSubtotal(0);
     }
   }, [productsInCart]);
-  const removeItem = () => {
+  const removeItem = (product) => {
     setProductsInCart(productsInCart.filter((o) => o.id !== product.id));
     toast.error("Product removed from the cart");
   };
@@ -108,7 +108,7 @@ const Cart = () => {
                           value={product?.quantity}
                           onChange={(e) => {
                             if (parseInt(e.target.value) == 0) {
-                              removeItem();
+                              removeItem(product);
                             } else {
                               updateQuantity(product, parseInt(e.target.value));
                             }
@@ -119,7 +119,7 @@ const Cart = () => {
                           <button
                             type="button"
                             className="-m-2 inline-flex p-2 text-gray-400 hover:text-gray-500"
-                            onClick={removeItem}
+                            onClick={() => removeItem(product)}
                           >
                             <span className="sr-only">Remove</span>
                             <XMarkIcon className="h-5 w-5" aria-hidden="true" />
