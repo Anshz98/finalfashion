@@ -10,8 +10,8 @@ const Header = () => {
     <header className="w-full flex items-center justify-between py-6 px-8 bg-[#003153] text-white max-sm:px-4 max-[400px]:px-3 border-b-2 border-[#ddd] hover:bg-white hover:text-black transition-colors duration-200">
       <div className="flex-shrink-0">
         <Link to="/" className="hover:text-[#003153] transition-colors duration-200">
-          <span style={{ fontFamily: "'Playfair Display', serif", fontWeight: "bold", fontSize: "2.5em", letterSpacing: "0.05em", textTransform: "uppercase" }}>
-            Fashion
+          <span style={{ fontFamily: "'Playfair Display', serif", fontWeight: "bold", fontSize: "2.5em", letterSpacing: "0.05em",}}>
+            WardobeWise
           </span>
         </Link>
       </div>
