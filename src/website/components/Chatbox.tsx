@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import Draggable from "react-draggable";
 
+const fashionCategories = [
+  { name: "Streetwear", description: "Casual and trendy outfits for everyday wear." },
+  { name: "Old Money", description: "Elegant and timeless fashion for a luxurious look." },
+  { name: "Summer", description: "Light and breezy outfits perfect for warm seasons." },
+  { name: "Winter", description: "Cozy and stylish outfits for the cold weather." },
+];
+
 const colorsWithComplementaryPairs = {
   white: "black",
   black: "white",
@@ -12,27 +19,7 @@ const colorsWithComplementaryPairs = {
   purple: "yellow",
   pink: "gray",
   gray: "pink",
-  cyan: "maroon",
-  maroon: "cyan",
-  teal: "brown",
-  brown: "teal",
-  navy: "beige",
-  beige: "navy",
-  coral: "olive",
-  olive: "coral",
-  lime: "violet",
-  violet: "lime",
-  gold: "silver",
-  silver: "gold",
 };
-
-const fashionCategories = [
-  "Streetwear",
-  "Old Money",
-  "Summer",
-  "Winter",
-  "All Items",
-];
 
 const ChatBox: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -56,14 +43,19 @@ const ChatBox: React.FC = () => {
     if (!userName) {
       setUserName(input);
       botMessage = {
-        bot: `Hi ${input}, welcome! You can ask me about:\n1. Fashion categories (${fashionCategories.join(
-          ", "
-        )}).\n2. Outfit ideas.\n3. Color matching for your outfits.`,
+        bot: `Hi ${input}, welcome! You can ask me about our fashion categories (${fashionCategories
+          .map((cat) => cat.name)
+          .join(", ")}) or get outfit and color recommendations.`,
       };
     }
     // Handle fashion categories
-    else if (fashionCategories.some((cat) => input.toLowerCase().includes(cat.toLowerCase()))) {
-      botMessage = { bot: `The ${input} collection is amazing! Would you like to explore more items in this category?` };
+    else if (fashionCategories.some((cat) => input.toLowerCase().includes(cat.name.toLowerCase()))) {
+      const category = fashionCategories.find((cat) =>
+        input.toLowerCase().includes(cat.name.toLowerCase())
+      );
+      botMessage = {
+        bot: `${category?.name}: ${category?.description}. You can discover more looks on our website under the ${category?.name} section.`,
+      };
     }
     // Color matching
     else if (Object.keys(colorsWithComplementaryPairs).some((color) => input.toLowerCase().includes(color))) {
@@ -71,11 +63,11 @@ const ChatBox: React.FC = () => {
         input.toLowerCase().includes(color)
       );
       const complementary = colorsWithComplementaryPairs[color!];
-      botMessage = { bot: `${color} goes well with ${complementary}. A perfect choice for your outfit!` };
+      botMessage = { bot: `${color} pairs perfectly with ${complementary}. Try it for a balanced and stylish look!` };
     }
     // Generic outfit suggestions
     else if (input.toLowerCase().includes("suggest outfit")) {
-      botMessage = { bot: "How about pairing a white shirt with navy pants and brown loafers? It's a timeless combination!" };
+      botMessage = { bot: "How about a navy blazer with beige chinos and loafers? Perfect for a semi-formal look!" };
     }
     // Greetings
     else if (input.toLowerCase().includes("hello") || input.toLowerCase().includes("hi")) {
